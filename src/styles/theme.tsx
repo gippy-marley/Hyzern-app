@@ -1,36 +1,56 @@
-import {createTheming} from '@callstack/react-theme-provider';
+import {createBox, createText, createTheme} from '@shopify/restyle';
 
-const defaultTheme = {
-  typography: {
-    color: '#FFF',
+export const palette = {
+  purple: '#5A31F4',
+  white: '#FFF',
+  black: '#111',
+  darkGray: '#333',
+  lightGray: '#EEE',
+  for: '#423bcf',
+  against: '#f1484b',
+  lightBackground: '#FFF',
+  darkBackground: '#191919',
+};
+
+export const theme = createTheme({
+  spacing: {
+    s: 8,
+    m: 16,
+    l: 24,
+    xl: 48,
+  },
+  colors: {
+    mainBackground: palette.lightBackground,
+    mainForeground: palette.black,
+    textColor: palette.black,
+  },
+  breakpoints: {},
+  textVariants: {
     heading: {
       fontSize: 32,
-      color: '#FFF',
+      color: 'textColor',
     },
     subheading: {
       fontSize: 24,
-      color: '#FFF',
+      color: 'textColor',
     },
     body: {
       fontSize: 18,
-      color: '#FFF',
+      color: 'textColor',
     },
   },
-  colors: {
-    background: {
-      default: '#191919',
+  cardVariants: {
+    primary: {
+      backgroundColor: 'primaryCardBackground',
+      shadowOpacity: 0.3,
     },
-    for: {
-      main: '#423bcf',
-    },
-    against: {
-      main: '#f1484b',
+    secondary: {
+      backgroundColor: 'secondaryCardBackground',
+      shadowOpacity: 0.1,
     },
   },
-  spacing: (x: number) => {
-    return x * 10;
-  },
-};
+});
 
-const {ThemeProvider, withTheme, useTheme} = createTheming(defaultTheme);
-export {ThemeProvider, withTheme, useTheme};
+export type Theme = typeof theme;
+export const Box = createBox<Theme>();
+export const Text = createText<Theme>();

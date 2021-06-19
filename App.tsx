@@ -9,16 +9,17 @@
  */
 
 import React from 'react';
-import {StatusBar, useColorScheme} from 'react-native';
+import {StatusBar} from 'react-native';
 import Routes from './src/routes';
-import {ThemeProvider} from './src/styles/theme';
+import {theme} from './src/styles/theme';
+import {darkTheme} from './src/styles/darkTheme';
+import {ThemeProvider} from '@shopify/restyle';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
+  const isDarkMode = true; // useColorScheme() === 'dark';
   return (
     <>
-      <ThemeProvider>
+      <ThemeProvider theme={isDarkMode ? darkTheme : theme}>
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
         <Routes />
       </ThemeProvider>

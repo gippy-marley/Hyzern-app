@@ -1,17 +1,22 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
-import {Box, Text} from '../../styles/theme';
+import {Box} from '../../components';
 import {useStyles} from './styles';
+import SignInModule from '../../modules/Login/SignIn';
+import SignUpModule from '../../modules/Login/SignUp';
 
 const Login: React.FC = ({}) => {
   const styles = useStyles();
+  const [isSignUp, setIsSignUp] = useState(false);
 
   return (
     <SafeAreaView style={styles.safeAreaContainer}>
       <Box style={styles.container}>
-        <Text variant="heading">Hello World</Text>
-        <Text variant="subheading">Hello World</Text>
-        <Text variant="body">Hello World</Text>
+        {isSignUp ? (
+          <SignUpModule setIsSignUp={setIsSignUp} />
+        ) : (
+          <SignInModule setIsSignUp={setIsSignUp} />
+        )}
       </Box>
     </SafeAreaView>
   );

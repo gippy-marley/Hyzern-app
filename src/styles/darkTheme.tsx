@@ -7,5 +7,7 @@ export const darkTheme: Theme = {
     mainBackground: palette.darkBackground,
     mainForeground: palette.black,
     textColor: palette.white,
+    placeholderTextColor: palette.darkPlaceHolderTextInputBackground,
+    textInputBackground: palette.darkTextInputBackground,
   },
 };

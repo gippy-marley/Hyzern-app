@@ -10,7 +10,11 @@ function Route() {
   return (
     <NavigationContainer>
       <AuthStack.Navigator initialRouteName="Login">
-        <AuthStack.Screen name="Login" component={LoginScreen} />
+        <AuthStack.Screen
+          options={{headerShown: false}}
+          name="Login"
+          component={LoginScreen}
+        />
       </AuthStack.Navigator>
     </NavigationContainer>
   );

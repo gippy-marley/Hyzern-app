@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useForm, FormProvider} from 'react-hook-form';
 import {useNavigation} from '@react-navigation/native';
 
@@ -16,6 +16,7 @@ type SignInModel = {
 
 const SignInModule = (props: SignInModuleProps) => {
   const navigation = useNavigation();
+  const [isLoading, setIsLoading] = useState(false);
   const formMethods = useForm<SignInModel>({
     mode: 'onBlur',
     defaultValues: {
@@ -25,7 +26,11 @@ const SignInModule = (props: SignInModuleProps) => {
   });
 
   const handeLogin = () => {
-    navigation.navigate('OTPVerify');
+    setIsLoading(true);
+    setTimeout(() => {
+      navigation.navigate('OTPVerify');
+      setIsLoading(false);
+    }, 2000);
   };
 
   return (
@@ -35,7 +40,11 @@ const SignInModule = (props: SignInModuleProps) => {
         <SignInForm />
         <TextButton label="Forgot Password?" textAlign="right" />
         <Spacer />
-        <Button label="Login" onPress={formMethods.handleSubmit(handeLogin)} />
+        <Button
+          label="Login"
+          isLoading={isLoading}
+          onPress={formMethods.handleSubmit(handeLogin)}
+        />
       </FormProvider>
       <Spacer />
       <TextButton

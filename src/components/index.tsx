@@ -1,8 +1,9 @@
 import Box from './Box';
 import Text from './Text';
-import TextInput from './TextInput';
+import TextField from './TextField';
 import TextButton from './TextButton';
 import Button from './Button';
 import Spacer from './Spacer';
+import FormTextField from './FormTextField';
 
-export {Box, Text, TextInput, TextButton, Button, Spacer};
+export {Box, Text, TextField, TextButton, Button, Spacer, FormTextField};

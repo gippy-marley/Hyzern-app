@@ -4,13 +4,17 @@ import {Box, Text} from './index';
 import {useTheme} from '@shopify/restyle';
 import {Theme} from '../styles/theme';
 
-type TextButtonProps = {label?: string; textAlign?: string};
+type TextButtonProps = {
+  label?: string;
+  textAlign?: string;
+  onPress?: () => void;
+};
 
 const TextButton = (props: TextButtonProps) => {
   const theme = useTheme<Theme>();
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={props.onPress}>
       <Box
         style={{
           paddingHorizontal: theme.spacing.m,

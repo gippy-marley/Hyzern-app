@@ -11,7 +11,7 @@ type LoginModuleProps = {
 
 type SignInModel = {
   name: string;
-  phone_number: string;
+  phoneNumber: string;
   email: string;
   password: string;
 };
@@ -22,7 +22,7 @@ const SignUpModule = (props: LoginModuleProps) => {
     mode: 'onBlur',
     defaultValues: {
       name: '',
-      phone_number: '',
+      phoneNumber: '',
       email: '',
       password: '',
     },

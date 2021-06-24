@@ -1,6 +1,12 @@
 import React, {createContext, useEffect, useState, useContext} from 'react';
-import * as AuthService from '../api/auth';
-import {SignInProps, UserProps} from '../models/Auth';
+import * as AuthService from '../API/auth';
+import {
+  SignInWithPhoneNumberProps,
+  UserProps,
+  VerifyOTPProps,
+  AuthResponse,
+  AuthResponsePhoneNumber,
+} from '../models/Auth';
 import {getToken, removeToken, setToken} from '../API';
 
 interface AuthProviderData {
@@ -10,9 +16,13 @@ interface AuthProviderData {
 interface AuthContextData {
   signed: boolean;
   user: UserProps | null;
-  signIn(signInData: SignInProps): Promise<void>;
-  signInWithPhoneNumber(signInData: SignInProps): Promise<void>;
-  verifyOTP(otp_verify_code: string): Promise<void>;
+  signInWithPhoneNumber(
+    signInData: SignInWithPhoneNumberProps,
+  ): Promise<AuthResponsePhoneNumber>;
+  verifyOTP({
+    otpVerifyCode,
+    otpVerifyId,
+  }: VerifyOTPProps): Promise<AuthResponse>;
   signOut(): void;
   theme: string;
   setThemeMode(theme?: string | null): void;
@@ -23,7 +33,6 @@ const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 export const AuthProvider = ({
   children,
 }: AuthProviderData): React.ReactElement => {
-  const [verification_id, setVerificationId] = useState<string>('');
   const [user, setUser] = useState<UserProps | null>(null);
   const [theme, setTheme] = useState<string>('light');
 
@@ -34,45 +43,45 @@ export const AuthProvider = ({
         return;
       }
 
-      const {user} = await AuthService.getCurrentUser(token);
-      setUser(user);
+      const {user: currentUser} = await AuthService.getCurrentUser(token);
+      setUser(currentUser);
     }
 
     loadStorageData();
   }, []);
 
-  async function signIn(signInData: SignInProps) {
-    const response = await AuthService.signIn(signInData);
-    setUser(response.user);
-  }
-
-  async function signInWithPhoneNumber(signInData: SignInProps): Promise<void> {
+  async function signInWithPhoneNumber(
+    signInData: SignInWithPhoneNumberProps,
+  ): Promise<AuthResponsePhoneNumber> {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await AuthService.signInWithPhoneNumber(signInData);
-        console.log(response);
-        setVerificationId(response.verificationId);
-        resolve();
+        resolve(response);
       } catch (err) {
+        console.log('Context', err);
         reject(err);
       }
     });
   }
 
-  async function verifyOTP(otp_verify_code: string): Promise<void> {
+  async function verifyOTP({
+    otpVerifyCode,
+    otpVerifyId,
+  }: VerifyOTPProps): Promise<AuthResponse> {
     return new Promise(async (resolve, reject) => {
       try {
         const response = await AuthService.verifyOTP({
-          otp_verify_code,
-          verification_id,
+          otpVerifyCode,
+          otpVerifyId,
         });
-        const {token, user} = response;
+        const {token, user: newUser} = response;
+
         if (!token) {
           throw new Error('TOKEN MISSING');
         }
-        setUser(user);
+        setUser(newUser);
         setToken(token);
-        resolve();
+        resolve(response);
       } catch (err) {
         reject(err);
       }
@@ -99,7 +108,6 @@ export const AuthProvider = ({
       value={{
         signed: !!user,
         user,
-        signIn,
         signInWithPhoneNumber,
         verifyOTP,
         signOut,

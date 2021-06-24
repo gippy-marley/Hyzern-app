@@ -37,6 +37,19 @@ export const verifyOTP = (payload: VerifyOTPProps): Promise<AuthResponse> =>
     }
   });
 
+export const resendOTP = (otpVerifyId: string): Promise<void> =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await api.post('/user/resend-otp', {
+        otpVerifyId,
+      });
+      console.log(response);
+      resolve();
+    } catch (err) {
+      reject(err);
+    }
+  });
+
 export const getCurrentUser = (token: string): Promise<AuthResponse> =>
   new Promise(async resolve => {
     try {
@@ -48,4 +61,4 @@ export const getCurrentUser = (token: string): Promise<AuthResponse> =>
     }
   });
 
-export default {signInWithPhoneNumber, verifyOTP};
+export default {signInWithPhoneNumber, verifyOTP, resendOTP};

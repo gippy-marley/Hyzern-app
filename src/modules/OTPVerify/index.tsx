@@ -1,11 +1,17 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect, useCallback} from 'react';
-import {Alert} from 'react-native';
+import {Alert, TouchableOpacity} from 'react-native';
 import {useForm, FormProvider} from 'react-hook-form';
 import {useRoute, useNavigation} from '@react-navigation/native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+MaterialIcons.loadFont();
+
 import {VerifyOTPProps} from '../../models/Auth';
 import {RootRouteProps} from '../../routes';
 import {useAuthContext} from '../../context/Auth';
+
+import AuthAPI from '../../API/auth';
 
 import {
   Box,
@@ -19,7 +25,6 @@ import {
 const OTPVerifyModule = () => {
   const route = useRoute<RootRouteProps<'OTPVerify'>>();
   const navigation = useNavigation();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const formMethods = useForm<VerifyOTPProps>({
@@ -37,7 +42,7 @@ const OTPVerifyModule = () => {
   }, []);
 
   useEffect(() => {
-    if (route.params && route.params && route.params.otpVerifyId) {
+    if (route.params.otpVerifyId) {
       const otpVerifyId = route.params.otpVerifyId;
       handleOTPVerifyId(otpVerifyId);
     } else {
@@ -63,9 +68,34 @@ const OTPVerifyModule = () => {
     }
   };
 
+  const handleResendOTP = async () => {
+    try {
+      await AuthAPI.resendOTP(formMethods.getValues('otpVerifyId'));
+      Alert.alert('OTP Resent');
+    } catch (err) {
+      Alert.alert(err.message);
+      console.log('Error', err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Box marginTop={'3xl'}>
-      <Text variant="heading">OTP Verification</Text>
+      <Box flexDirection="row">
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <MaterialIcons
+            name="arrow-back-ios"
+            size={30}
+            style={{marginTop: 5}}
+            color="#FFF"
+          />
+        </TouchableOpacity>
+        <Box>
+          <Text variant="heading">OTP Verification</Text>
+        </Box>
+      </Box>
+
       <FormProvider {...formMethods}>
         <FormTextField
           name="otpVerifyCode"
@@ -86,7 +116,11 @@ const OTPVerifyModule = () => {
         />
       </FormProvider>
       <Spacer />
-      <TextButton label="Resend OTP" textAlign="center" />
+      <TextButton
+        label="Resend OTP"
+        textAlign="center"
+        onPress={handleResendOTP}
+      />
     </Box>
   );
 };

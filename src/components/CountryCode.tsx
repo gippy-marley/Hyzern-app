@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import {TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+Ionicons.loadFont();
 
 import {useTheme} from '@shopify/restyle';
 import CountryPicker, {

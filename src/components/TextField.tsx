@@ -1,20 +1,22 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
-import {TextInput as RNTextInput} from 'react-native';
+import {TextInput as RNTextInput, View} from 'react-native';
 import {Box, Text} from './index';
 import {useTheme} from '@shopify/restyle';
 import {Theme} from '../styles/theme';
 
 type Props = React.ComponentProps<typeof RNTextInput> & {
   label?: string;
-  customStyle?: any;
+  textInputStyle?: typeof RNTextInput | {};
+  containerStyle?: typeof View | {};
   helperText?: string;
   hasErrors?: boolean;
 };
 
 const defaultOptions = {
   label: '',
-  customStyle: {},
+  textInputStyle: {},
+  containerStyle: {},
   helperText: '',
   hasErrors: false,
 };
@@ -36,7 +38,8 @@ const TextField = React.forwardRef<RNTextInput, Props>(
     };
 
     return (
-      <Box style={{marginBottom: theme.spacing.textInput}}>
+      <Box
+        style={[{marginBottom: theme.spacing.textInput}, props.containerStyle]}>
         <Text variant="textInputLabel" marginBottom="s">
           {props.label}
         </Text>
@@ -54,7 +57,7 @@ const TextField = React.forwardRef<RNTextInput, Props>(
               borderWidth: 1,
               borderColor: getBorderColor(),
             },
-            props.customStyle,
+            props.textInputStyle,
           ]}
           placeholderTextColor={theme.colors.placeholderTextColor}
           onBlur={event => {

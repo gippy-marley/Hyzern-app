@@ -5,7 +5,7 @@ import TextField from './TextField';
 
 type Props = React.ComponentProps<typeof TextField> & {
   name: string;
-  label: string;
+  label?: string;
   rules: RegisterOptions;
   validationLength?: number;
   formatter?: (oldValue: string, newValue: string) => string;

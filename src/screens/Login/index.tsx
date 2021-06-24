@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import {Box} from '../../components';
 import {useStyles} from './styles';
-import SignInModule from '../../modules/Login/SignIn';
+import SignInPhoneNumberModule from '../../modules/Login/SignInPhoneNumber';
 import SignUpModule from '../../modules/Login/SignUp';
 
 const Login: React.FC = ({}) => {
@@ -15,7 +15,7 @@ const Login: React.FC = ({}) => {
         {isSignUp ? (
           <SignUpModule setIsSignUp={setIsSignUp} />
         ) : (
-          <SignInModule setIsSignUp={setIsSignUp} />
+          <SignInPhoneNumberModule setIsSignUp={setIsSignUp} />
         )}
       </Box>
     </SafeAreaView>

@@ -11,7 +11,7 @@ const SignUpForm = () => {
         rules={{required: 'Name Required'}}
       />
       <FormTextField
-        name="phone_number"
+        name="phoneNumber"
         label="Phone Number"
         placeholder="Enter your Phone Number"
         rules={{required: 'Phone Number Required'}}
@@ -27,16 +27,6 @@ const SignUpForm = () => {
             value: /\S+@\S+\.\S+/,
             message: 'Please enter the Email properly',
           },
-        }}
-      />
-      <FormTextField
-        name="password"
-        label="Password"
-        placeholder="Enter your Password"
-        secureTextEntry={true}
-        rules={{
-          required: 'Password Required',
-          minLength: {value: 6, message: 'Minimum should be 6 letters'},
         }}
       />
     </Box>

@@ -1,38 +1,21 @@
 import api from '../index';
-import {SignInProps, UserProps, VerifyOTPProps} from '../../models/Auth';
-
-interface AuthResponsePhoneNumber {
-  verificationId: string;
-}
-
-interface AuthResponse {
-  token: string | null;
-  user: UserProps | null;
-}
-
-export const signIn = (payload: SignInProps): Promise<AuthResponse> =>
-  new Promise(async (resolve, reject) => {
-    try {
-      const response = await api.post('/user/signin-phone-number', payload);
-      console.log(response);
-      resolve({
-        token: '123',
-        user: {country_code: '+91', phone_number: 9566141671},
-      });
-    } catch (err) {
-      reject(err);
-    }
-  });
+import {
+  SignInWithPhoneNumberProps,
+  VerifyOTPProps,
+  AuthResponse,
+  AuthResponsePhoneNumber,
+} from '../../models/Auth';
 
 export const signInWithPhoneNumber = (
-  payload: SignInProps,
+  payload: SignInWithPhoneNumberProps,
 ): Promise<AuthResponsePhoneNumber> =>
   new Promise(async (resolve, reject) => {
     try {
-      const response = await api.post('/user/phone-number', payload);
-      const {otp_verification_id} = response.data.data;
+      const response = await api.post('/user/signin-phone-number', payload);
+      const {otpVerifyId, isRegistered} = response.data.data;
       resolve({
-        verificationId: otp_verification_id,
+        otpVerifyId,
+        isRegistered,
       });
     } catch (err) {
       reject(err);
@@ -42,10 +25,10 @@ export const signInWithPhoneNumber = (
 export const verifyOTP = (payload: VerifyOTPProps): Promise<AuthResponse> =>
   new Promise(async (resolve, reject) => {
     try {
-      const {verification_id: otp_verification_id, otp_verify_code} = payload;
+      const {otpVerifyId, otpVerifyCode} = payload;
       const response = await api.post('/user/otp-verify', {
-        otp_verification_id,
-        otp_verify_code,
+        otpVerifyId,
+        otpVerifyCode,
       });
       const {user, token} = response.data.data;
       resolve({user, token});
@@ -64,3 +47,5 @@ export const getCurrentUser = (token: string): Promise<AuthResponse> =>
       resolve({user: null, token: null});
     }
   });
+
+export default {signInWithPhoneNumber, verifyOTP};

@@ -58,7 +58,7 @@ export const theme = createTheme({
       color: 'textColor',
     },
     textInputLabel: {
-      fontSize: 16,
+      fontSize: 14,
       color: 'textColor',
     },
     textInput: {

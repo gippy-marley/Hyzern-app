@@ -9,7 +9,8 @@ const SignInPhoneNumberForm = () => {
 
   return (
     <>
-      <Box flex={1} flexDirection="row" alignItems="center" minHeight={120}>
+      <Text variant="textInputLabel">Phone Number</Text>
+      <Box flex={1} flexDirection="row" alignItems="center" minHeight={80}>
         <Box
           backgroundColor="textInputBackground"
           flex={1}

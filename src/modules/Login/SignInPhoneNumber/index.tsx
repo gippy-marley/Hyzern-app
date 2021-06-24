@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Box, Text, TextButton, Button, Spacer} from '../../../components';
 import SignInPhoneNumberForm from './SignInPhoneNumberForm';
+import {defaultCountry} from '../../../config';
 
 type SignInPhoneNumberModuleProps = {
   setIsSignUp?: (state: boolean) => void;
@@ -20,12 +21,16 @@ const SignInPhoneNumberModule = (props: SignInPhoneNumberModuleProps) => {
   const formMethods = useForm<SignInPhoneNumberModel>({
     mode: 'onBlur',
     defaultValues: {
-      countryCode: '+91',
+      countryCode:
+        defaultCountry && defaultCountry.callingCode
+          ? defaultCountry?.callingCode[0]
+          : '91',
       phoneNumber: '',
     },
   });
 
   const handeLogin = () => {
+    console.log(formMethods.getValues());
     setIsLoading(true);
     setTimeout(() => {
       navigation.navigate('OTPVerify');
@@ -37,10 +42,10 @@ const SignInPhoneNumberModule = (props: SignInPhoneNumberModuleProps) => {
     <Box marginTop={'3xl'}>
       <Text variant="heading">Sign In</Text>
       <FormProvider {...formMethods}>
-        <SignInPhoneNumberForm />
+        <SignInPhoneNumberForm formMethods={formMethods} />
         <Spacer />
         <Button
-          label="Send OTP"
+          label="Sign In"
           isLoading={isLoading}
           onPress={formMethods.handleSubmit(handeLogin)}
         />

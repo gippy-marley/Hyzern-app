@@ -4,9 +4,14 @@ import {Box} from '../../components';
 import {useStyles} from './styles';
 import SignInModule from '../../modules/Login/SignIn';
 import SignUpModule from '../../modules/Login/SignUp';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 
-const Login: React.FC = ({}) => {
+
+
+const Login: React.FC = () => {
   const styles = useStyles();
+  
   const [isSignUp, setIsSignUp] = useState(false);
 
   return (

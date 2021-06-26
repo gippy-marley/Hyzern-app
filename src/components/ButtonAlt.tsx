@@ -13,12 +13,17 @@ const TextButton = (props: TextButtonProps) => {
     <TouchableOpacity onPress={props.onPress}>
       <Box
         style={{
-          paddingHorizontal: theme.spacing.m,
-          paddingVertical: theme.spacing.m,
+          elevation: 5,
+          paddingHorizontal: theme.spacing.l,
           backgroundColor: theme.colors.buttonBackground,
-          borderRadius: theme.rounded.m,
+          borderRadius: theme.rounded.xl,
+          width: 180,
+          height: 50,
+          // marginBottom: 100,
+          alignSelf: 'center',
+          justifyContent: 'center'
         }}>
-        <Text textAlign="center" fontWeight={'bold'} variant="body">
+        <Text textAlign="center" variant="body">
           {props.label}
         </Text>
       </Box>

@@ -23,7 +23,7 @@ const SignUpModule = (props: LoginModuleProps) => {
       <Button label="Sign Up" />
       <Spacer />
       <TextButton
-        label="Already have an account? Sign In!"
+        label="Already have an account? sign In!"
         textAlign="center"
         onPress={() => !props.setIsSignUp || props.setIsSignUp(false)}
       />

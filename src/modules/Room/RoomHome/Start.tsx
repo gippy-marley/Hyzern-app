@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import Modal from 'react-native-modal';
 import { StyleSheet } from 'react-native';
-import { ButtonAlt, Box, TextInput, TextButton } from '../../../components';
+import { ButtonAlt, Box, TextField, TextButton } from '../../../components';
 
 const Start = () =>{
 
@@ -21,7 +21,7 @@ const Start = () =>{
         <Box style={{marginTop:150, width: '100%', height:'100%', margin: 0,
         borderTopLeftRadius: 18, borderTopRightRadius: 18, padding: 10}}
         backgroundColor={'mainBackground'}>     
-          <TextInput margin={40} height={110} textAlignVertical={'top'} borderColor={null} placeholder="Topic Name"></TextInput>
+          <TextField margin={40} height={110} textAlignVertical={'top'} borderColor={null} placeholder="Topic Name"></TextField>
             <Box flexDirection={'row'} justifyContent={'space-between'} style={{marginHorizontal: 50}}>
               <TextButton label="For" style={[styles.textButton, {backgroundColor: '#423bcf'}]} ></TextButton>
               <TextButton label="Against" style={[styles.textButton, {backgroundColor: '#f1484b'}]}></TextButton>

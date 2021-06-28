@@ -35,19 +35,6 @@ const SignUpModule = (props: LoginModuleProps) => {
   return (
     <Box marginTop={'3xl'}>
       <Text variant="heading">Sign Up</Text>
-<<<<<<< HEAD
-      <TextInput label="Name" placeholder="Enter your Name" />
-      <TextInput label="Phone Number" placeholder="Enter your Phone Number" />
-      <TextInput label="Email Address" placeholder="Enter your Email Address" />
-      <TextInput label="Password" placeholder="Enter your Password" />
-      <Button label="Sign Up" />
-      <Spacer />
-      <TextButton
-        label="Already have an account? sign In!"
-        textAlign="center"
-        onPress={() => !props.setIsSignUp || props.setIsSignUp(false)}
-      />
-=======
       <FormProvider {...formMethods}>
         <SignUpForm />
         <Button
@@ -61,7 +48,6 @@ const SignUpModule = (props: LoginModuleProps) => {
           onPress={() => !props.setIsSignUp || props.setIsSignUp(false)}
         />
       </FormProvider>
->>>>>>> a3a0858c43794b75b365fcd4f336f16593b16b6e
     </Box>
   );
 };

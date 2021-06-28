@@ -7,11 +7,8 @@ import LoginScreen from '../screens/Login';
 import OTPVerifyScreen from '../screens/OTPVerify';
 import RoomModule from '../screens/Room';
 import RoomScreen from '../modules/Room/RoomScreen';
-import { RootStackParamList } from './RoomStackParamList';
 
-<<<<<<< HEAD
-const AuthStack = createStackNavigator<RootStackParamList>();
-=======
+
 export type RootStackParamList = {
   Home: undefined;
   OTPVerify: {otpVerifyId: string};
@@ -21,7 +18,6 @@ export type RootRouteProps<RouteName extends keyof RootStackParamList> =
   RouteProp<RootStackParamList, RouteName>;
 
 const AuthStack = createStackNavigator();
->>>>>>> a3a0858c43794b75b365fcd4f336f16593b16b6e
 
 function Route() {
   return (

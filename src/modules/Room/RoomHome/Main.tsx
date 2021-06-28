@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import {TouchableOpacity, View, Text, StyleSheet, Image, ImageBackground} from 'react-native';
-import { add } from 'react-native-reanimated';
 import { RootStackParamList } from '../../../routes/RoomStackParamList';
 
 type RoomHomeProps ={
@@ -82,7 +81,6 @@ const styles= StyleSheet.create({
     borderRadius:50
   },
   progressbar:{
-    // marginBottom: 10,
     marginTop: -15,
     height: 5,
     backgroundColor: '#423bcf',

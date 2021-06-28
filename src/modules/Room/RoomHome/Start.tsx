@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import Modal from 'react-native-modal';
-import { StyleSheet, TouchableHighlight, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { ButtonAlt, Box, TextInput, TextButton } from '../../../components';
 
 const Start = () =>{

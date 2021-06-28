@@ -8,17 +8,15 @@ import { Box, CommentInput, TextInput } from '../../../components';
 
 
 const RoomScreen = () =>{
-
     const { cont }=data;
   return(
-    <Box flex={1}  backgroundColor={'buttonBackground'}>
+    <View flex={1} backgroundColor={'buttonBackground'} >
     <Header></Header>
-    <Main cont={cont} ></Main>  
+    <Main cont={cont} ></Main>
     <CommentInput style={{borderWidth: 1, borderRadius: 50,
-        borderColor: '#ADADAD', backgroundColor: 'rgba(0,0,0,0.05)', marginHorizontal: 10,
-        paddingLeft: 20, height: 40, margin: 0, bottom: 80}} placeholder="comments" />
-    </Box>
-    
+      borderColor: '#ADADAD', backgroundColor: 'rgba(0,0,0,0.05)', marginHorizontal: 10,
+        paddingLeft: 20, bottom: 80, height: 40 }} placeholder="comments" />
+    </View>    
   )  
 }
 

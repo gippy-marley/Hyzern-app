@@ -10,7 +10,7 @@ import { TouchableWithoutFeedback } from 'react-native';
 const RoomModule = () =>{
    const {cont} = data;
   return(
-      <View flex={1}>
+      <View >
       <Header></Header>
       <ScrollView><Main cont={cont} /></ScrollView>
       <Start ></Start>   

@@ -38,10 +38,10 @@ const CommentInput= (props: TextInputProps = defaultOptions) => {
   };
 
   return (
-    <Box style={{  marginBottom: theme.spacing.textInput}}>
-      {/* <Text variant="textInputLabel" marginBottom="s">
+<Box style={{ height: 0 }} >
+      <Text variant="textInputLabel" marginBottom="s">
         {props.label}
-      </Text> */}
+      </Text>
       <RNTextInput
         style={[
           {
@@ -62,14 +62,13 @@ const CommentInput= (props: TextInputProps = defaultOptions) => {
         onBlur={() => setIsFocused(false)}
         {...props}
       />
-      {/* {props.hasErrors ? (
+      {props.hasErrors ? (
         <Text variant="errorHelperText">{props.helperText}</Text>
       ) : (
         <Text variant="helperText">{props.helperText}</Text>
-      )} */}
+      )}
     </Box>
   );
 };
 
 export default CommentInput;
-14

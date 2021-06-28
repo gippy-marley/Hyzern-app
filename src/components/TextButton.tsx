@@ -6,6 +6,7 @@ type TextButtonProps = {
   label?: string;
   textAlign?: string;
   onPress?: () => void;
+  style: any
 };
 
 const TextButton = (props: TextButtonProps) => {

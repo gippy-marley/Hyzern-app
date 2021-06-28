@@ -18,7 +18,7 @@ const Main = (props: RoomScreenProps) =>{
    const num = route.params.id;
 
   return(
-    <ScrollView style={{flex:1}}>
+    <ScrollView>
     
     {cont.filter((y)=>y.id===num).map((x:any)=>{
           return(
@@ -39,8 +39,7 @@ const Main = (props: RoomScreenProps) =>{
             <Text style={styles.labelagainst}>Against</Text>
 
             </ImageBackground>
-            </View>
-        )        
+            </View>)        
     })}
     </ScrollView>
   )  
@@ -73,7 +72,7 @@ const styles=StyleSheet.create({
     },
     image:{
         width: '100%',
-        height: 250
+        height: 280
     },
     labelfor:{
         margin: 10,
@@ -97,8 +96,7 @@ const styles=StyleSheet.create({
         textAlign: 'center',
         textAlignVertical: 'center',
         color: 'white'
-    },
-    
+    }   
 
 })
 

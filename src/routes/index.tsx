@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { StackNavigationProp } from '@react-navigation/stack';
 
@@ -9,7 +9,19 @@ import RoomModule from '../screens/Room';
 import RoomScreen from '../modules/Room/RoomScreen';
 import { RootStackParamList } from './RoomStackParamList';
 
+<<<<<<< HEAD
 const AuthStack = createStackNavigator<RootStackParamList>();
+=======
+export type RootStackParamList = {
+  Home: undefined;
+  OTPVerify: {otpVerifyId: string};
+};
+
+export type RootRouteProps<RouteName extends keyof RootStackParamList> =
+  RouteProp<RootStackParamList, RouteName>;
+
+const AuthStack = createStackNavigator();
+>>>>>>> a3a0858c43794b75b365fcd4f336f16593b16b6e
 
 function Route() {
   return (

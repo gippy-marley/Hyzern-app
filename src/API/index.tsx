@@ -1,6 +1,6 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {tokenKey} from '../config';
+import {tokenKey, baseURL} from '../config';
 
 export const getToken = async () => {
   const token = await AsyncStorage.getItem(tokenKey);
@@ -16,7 +16,7 @@ export const removeToken = async () => {
 };
 
 const API = axios.create({
-  baseURL: 'https://192.168.1.54:8000/api/',
+  baseURL,
   headers: {},
 });
 
@@ -42,8 +42,10 @@ API.interceptors.response.use(
     throw Error(`${msg}`);
   },
   function (error) {
-    console.log('API', error);
-    throw Error(error);
+    if (error.response) {
+      throw error.response.data;
+    }
+    throw error;
   },
 );
 

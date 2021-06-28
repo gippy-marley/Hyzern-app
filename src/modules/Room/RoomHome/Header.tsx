@@ -20,9 +20,6 @@ setmodalVisibility(false)
         <View style={styles.modal}>
           <Text style={styles.modaltext}>Profile</Text>
           <Text style={styles.modaltext}>My account</Text>
-          {/* <TouchableOpacity onPress={()=> modalClose()}>
-            <Text style={{fontSize: 20}}>close</Text>
-          </TouchableOpacity> */}
         </View>
       </Modal>
     <Text style={styles.logo}>HYZERN</Text>

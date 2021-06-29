@@ -3,5 +3,6 @@ export type RootStackParamList={
     OTPVerify: undefined;
     Room: undefined;
     RoomScreen: {id: any};
+    AddTopic: any;
   };
   

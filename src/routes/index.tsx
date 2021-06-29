@@ -7,6 +7,7 @@ import LoginScreen from '../screens/Login';
 import OTPVerifyScreen from '../screens/OTPVerify';
 import RoomModule from '../screens/Room';
 import RoomScreen from '../modules/Room/RoomScreen';
+import AddTopic from '../modules/Room/RoomHome/AddTopic';
 
 
 export type RootStackParamList = {

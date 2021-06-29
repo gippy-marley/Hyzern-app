@@ -1,9 +1,10 @@
-import React from 'react';
 import { useState } from 'react';
+import AddTopic from './AddTopic';
+import React, {Component} from 'react';
 import Modal from 'react-native-modal';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, ScrollView, KeyboardAvoidingView } from 'react-native';
 import { ButtonAlt, Box, TextField, TextButton } from '../../../components';
-
+import { Platform } from 'react-native';
 const Start = () =>{
 
   const [modalVisible,setModalVisible]= useState(false)
@@ -15,7 +16,9 @@ const Start = () =>{
   return(
     <Box marginHorizontal={'3xl'} bottom={200}>
       <ButtonAlt label="Start a talk" textAlign="center" onPress={ ()=> toggleModal()} />
-      
+      {/* <AddTopic toggleModal={toggleModal} modalVisible={modalVisible}></AddTopic> */}
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : ""} style={{flex:1}}>
+        <ScrollView>      
       <Modal isVisible={ modalVisible } swipeDirection="down" onSwipeComplete ={()=> toggleModal()}
       onBackButtonPress={()=> toggleModal()} style={{margin: 0, padding: 0}}>
         <Box style={{marginTop:150, width: '100%', height:'100%', margin: 0,
@@ -29,6 +32,8 @@ const Start = () =>{
           <TextButton label="Let's do it!" style={[styles.textButton, {backgroundColor: '#01A56D', width: 150, alignSelf: 'center', marginTop: 200}]} ></TextButton>
         </Box>                
       </Modal>
+      </ScrollView>
+      </KeyboardAvoidingView>
     </Box>
   )
 }
@@ -44,4 +49,5 @@ const styles= StyleSheet.create({
   textAlign: 'center'
   }
 })
+
 export default Start;
